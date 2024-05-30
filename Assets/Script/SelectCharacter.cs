@@ -35,7 +35,7 @@ public class SelectCharacter : MonoBehaviour
             {
                 SceneManager.LoadScene("MainScene");
             }
-            GameCountTxt.text = $"곧 게임이 시작됩니다/ \n {gameCount:F1}";
+            GameCountTxt.text = $"곧 게임이 시작됩니다. \n {gameCount:F1}";
         }
     }
 

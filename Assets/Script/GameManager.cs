@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public float PlayExp = 1f;
 
 
+    private void Start()
+    {
+        UserID = PlayerPrefs.GetString("ID");
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,10 +29,5 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(Instance);
-    }
-
-    private void Start()
-    {
-        UserID = PlayerPrefs.GetString("ID");
     }
 }

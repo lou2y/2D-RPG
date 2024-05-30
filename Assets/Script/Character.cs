@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class Character : MonoBehaviour
     public float Jumppower = 6f;
 
     private bool isFloor;
+    private bool isLadder;
+    private bool isClimbing;
+    private float inputVecrical;
 
     public GameObject AttackObj;
     public float AttackSpeed = 3f;
@@ -33,12 +38,53 @@ public class Character : MonoBehaviour
         Move();
         AttackCheck();
         JumpCheck();
+        ClimbingCheck();
     }
     private void FixedUpdate()
     {
         Attack();
         Jump();
+        Climbing();
     }
+
+    private void ClimbingCheck()
+    {
+        inputVecrical = Input.GetAxis("Vertical");
+        if (isLadder && Math.Abs(inputVecrical) > 0)
+        {
+            isClimbing = true;
+        }
+    }
+    private void Climbing()
+    {
+        if (isClimbing)
+        {
+            rigidbody2d.gravityScale = 0f;
+            rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, inputVecrical * Speed);
+        }
+        else
+        {
+            rigidbody2d.gravityScale = 1f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            isLadder = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Ladder")
+        {
+            isLadder = false;
+            isClimbing = false;
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -95,7 +141,7 @@ public class Character : MonoBehaviour
                 animator.SetTrigger("Attack");
             audioSource.PlayOneShot(AttackClip);
 
-            if (gameObject.name == "Warrior")
+            if (gameObject.name == "Warrior(Clone)")
             {
                 AttackObj.SetActive(true);
                 Invoke("SetAttackObjInactive", 0.5f);
