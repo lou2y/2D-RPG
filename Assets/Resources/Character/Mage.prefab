@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5982042184452127586}
   m_Layer: 0
   m_Name: Mage
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   Jumppower: 6
   AttackObj: {fileID: 4501115956265180245, guid: 72082ed8565e51b4e8a840d764db4252, type: 3}
   AttackSpeed: 3
-  AttackClip: {fileID: 0}
+  AttackClip: {fileID: 8300000, guid: 4d35d4581c37ff140b96a1250a8edabe, type: 3}
 --- !u!61 &616377396886410531
 BoxCollider2D:
   m_ObjectHideFlags: 0

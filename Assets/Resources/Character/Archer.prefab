@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3677005713613602328}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   Jumppower: 6
   AttackObj: {fileID: 6078235697759954699, guid: 86a29a446a316dd4598324f9da848396, type: 3}
   AttackSpeed: 6
-  AttackClip: {fileID: 0}
+  AttackClip: {fileID: 8300000, guid: 4d35d4581c37ff140b96a1250a8edabe, type: 3}
 --- !u!82 &8281543475382224154
 AudioSource:
   m_ObjectHideFlags: 0
