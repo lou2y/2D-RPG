@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour
     private bool isDie = false;
 
     public float MoveSpeed = 3f;
-    public GameObject[] itemObj;
+    public GameObject[] ItemObj;
 
     private Animator MonsterAnimator;
 
@@ -65,22 +65,26 @@ public class Monster : MonoBehaviour
         }
         Debug.Log("MonsterHP : " + MonsterHP);
     }
-
+     
     private void MonsterDie()
     {
         isDie = true;
+
         MonsterAnimator.SetTrigger("Die");
         GameManager.Instance.PlayExp += MonsterExp;
 
-        int itemRandom = Random.Range(0, itemObj.Length * 2);
-        if (itemRandom <= itemObj.Length)
-        {
-            Instantiate(itemObj[itemRandom], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        }
 
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 1.5f);
     }
 
+    private void OnDestroy()
+    {
+        int itemRandom = Random.Range(0, ItemObj.Length);
+        if (itemRandom < ItemObj.Length)
+        {
+            Instantiate(ItemObj[itemRandom], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        }
+    }
 
 }
