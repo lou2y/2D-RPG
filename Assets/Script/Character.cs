@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ public class Character : MonoBehaviour
     public AudioClip AttackClip;
 
     private bool justAttack, justJump;
+    private bool faceRight = true;
 
     void Start()
     {
@@ -143,7 +145,7 @@ public class Character : MonoBehaviour
 
             if (gameObject.name == "Warrior(Clone)")
             {
-                AttackObj.SetActive(true);
+                AttackObj.GetComponent<Collider2D>().enabled = true;
                 Invoke("SetAttackObjInactive", 0.5f);
             }
 
@@ -165,7 +167,7 @@ public class Character : MonoBehaviour
 
     private void SetAttackObjInactive()
     {
-        AttackObj.SetActive(false);
+        AttackObj.GetComponent<Collider2D>().enabled = false;
     }
 
     private void Move()
@@ -174,11 +176,13 @@ public class Character : MonoBehaviour
         {
             transform.Translate(Vector3.right * Speed * Time.deltaTime);
             animator.SetBool("Move", true);
+            if (!faceRight) Flip();
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Speed * Time.deltaTime);
             animator.SetBool("Move", true);
+            if (!faceRight) Flip();
         }
         else
         {
@@ -193,6 +197,15 @@ public class Character : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    private void Flip()
+    { 
+        faceRight = !faceRight;
+
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
 

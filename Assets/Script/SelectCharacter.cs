@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
@@ -43,7 +44,10 @@ public class SelectCharacter : MonoBehaviour
     {
         GameStart.SetActive(true);
         isPlayButtonCliked = true;
-        GameManager.Instance.CharacterName = Characters[charIndex].name;
+
+        DEfine.Player player = (DEfine.Player)Enum.Parse(typeof(DEfine.Player), Characters[charIndex].name);
+
+        GameManager.Instance.SelectedPlayer = player;
         //CharacterName = Characters[charIndex].name;
     }
     public void SelectCharacterBtn(string btnName)
