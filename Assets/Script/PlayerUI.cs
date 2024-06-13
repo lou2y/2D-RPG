@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
@@ -28,6 +29,10 @@ public class PlayerUI : MonoBehaviour
     {
         CharacterImg.sprite = player.GetComponent<SpriteRenderer>().sprite;
         HpSlider.value = GameManager.Instance.PlayerHP;
+    }
+    public void ReplayGame()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 
 }
