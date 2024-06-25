@@ -7,15 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject player;
+
     public string CharacterName;
     public string UserID;
 
     public float PlayerHP = 100f;
     public float PlayExp = 1f;
     public int Coin = 0;
-
-    private GameManager player;
-
 
     private void Start()
     {
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
     public GameObject SpawnPlyer(Transform spawnPos)
     {
         GameObject playerPrefab = Resources.Load<GameObject>("Character/" + GameManager.Instance.CharacterName);
-        GameObject player = Instantiate(playerPrefab, spawnPos.position, spawnPos.rotation);
+        player = Instantiate(playerPrefab, spawnPos.position, spawnPos.rotation);
 
         return player;
     }
