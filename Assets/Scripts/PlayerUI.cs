@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
 {
     public Image CharacterImg;
     public Text IdText;
+    public Text LvText;
 
     public Slider HpSlider;
     public Slider MpSlider;
@@ -29,8 +30,9 @@ public class PlayerUI : MonoBehaviour
     private void display()
     {
         CharacterImg.sprite = player.GetComponent<SpriteRenderer>().sprite;
-        HpSlider.value = GameManager.Instance.PlayerHP;
-        MpSlider.value = GameManager.Instance.PlayerMP;
-        ExpSlider.value = GameManager.Instance.PlayerExp;
+        HpSlider.value = GameManager.Instance.PlayerStat.HP;
+        MpSlider.value = GameManager.Instance.PlayerStat.MP;
+        ExpSlider.value = GameManager.Instance.PlayerStat.Exp;
+        LvText.text = "Lv : " + GameManager.Instance.PlayerStat.Level;
     }
 }

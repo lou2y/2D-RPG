@@ -1,7 +1,11 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public bool justJump, justAttack;
+    private bool faceRight = true;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbody2d;
@@ -19,8 +23,6 @@ public class Character : MonoBehaviour
     private bool isLadder;
     private bool isClimbing;
     private float inputVertical;
-
-    private bool justJump, justAttack;
 
     void Start()
     {
@@ -90,7 +92,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                if (spriteRenderer.flipX)
+                if (!faceRight)
                 {
                     GameObject obj = Instantiate(AttackObj, transform.position, Quaternion.Euler(0, 180f, 0));
                     obj.GetComponent<Rigidbody2D>().AddForce(Vector2.left * AttackSpeed, ForceMode2D.Impulse);
@@ -139,11 +141,13 @@ public class Character : MonoBehaviour
         {
             transform.Translate(Vector3.right * Speed * Time.deltaTime);
             animator.SetBool("Move", true);
+            if (!faceRight) Flip();
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Speed * Time.deltaTime);
             animator.SetBool("Move", true);
+            if (faceRight) Flip();
         }
         else
         {
@@ -158,6 +162,14 @@ public class Character : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    private void Flip()
+    {
+        faceRight = !faceRight;
+        Vector2 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

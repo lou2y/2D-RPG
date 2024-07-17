@@ -4716,6 +4716,17 @@ MonoBehaviour:
   ItemNameText: {fileID: 496637217}
   ItemCoinText: {fileID: 1814728020}
   ItemExplainText: {fileID: 813286760}
+--- !u!114 &910283834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4527668967065098623, guid: 19eb5b13664538c44974f189924d73da, type: 3}
+  m_PrefabInstance: {fileID: 1099438237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &958932979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5181,6 +5192,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5127037865164235402, guid: 19eb5b13664538c44974f189924d73da, type: 3}
+      propertyPath: LvText
+      value: 
+      objectReference: {fileID: 910283834}
     - target: {fileID: 5496149435744109673, guid: 19eb5b13664538c44974f189924d73da, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6436,13 +6451,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3e993b89edda848b91bc1030e14a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterName: Archer
+  SelectedPlayer: 0
   UserID: test
-  PlayerHP: 100
-  PlayerMP: 100
-  PlayerExp: 1
-  PlayerDef: 1
-  Coin: 10000
+  PlayerStat:
+    HP: 100
+    MP: 100
+    Exp: 1
+    Def: 1
+    Level: 1
+    Coin: 0
   player: {fileID: 0}
 --- !u!4 &1300129061
 Transform:
