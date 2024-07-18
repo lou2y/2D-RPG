@@ -9,6 +9,8 @@ TagManager:
   - Ladder
   - Coin
   - initPos
+  - TAZOFX
+  - Skiil
   layers:
   - Default
   - TransparentFX
